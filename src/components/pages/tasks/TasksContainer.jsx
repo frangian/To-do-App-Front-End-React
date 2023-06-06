@@ -22,11 +22,14 @@ const TasksContainer = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token) {
-      navigate("/login");
-    } else {
-      getTareas();
-    }
+    setTimeout(() => {
+      const token = "Bearer " + localStorage.getItem("token");
+      if (!token || token === "Bearer null") {
+        navigate("/login");
+      } else {
+        getTareas();
+      }
+    }, 0);
   }, [navigate]);
 
   const getTareas = async () => {
